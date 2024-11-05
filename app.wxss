@@ -1,0 +1,32 @@
+/* 全局样式 */
+page {
+  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica,
+    Segoe UI, Arial, Roboto, 'PingFang SC', 'miui', 'Hiragino Sans GB', 'Microsoft Yahei',
+    sans-serif;
+  font-size: 28rpx;
+  line-height: 1.5;
+  color: #333;
+  background-color: #f8f8f8;
+}
+
+.container {
+  padding: 20rpx;
+  box-sizing: border-box;
+}
+
+.btn-primary {
+  background-color: #1AAD19;
+  color: #fff;
+  border-radius: 8rpx;
+  padding: 20rpx 40rpx;
+  text-align: center;
+}
+
+.btn-default {
+  background-color: #fff;
+  color: #333;
+  border: 1rpx solid #ddd;
+  border-radius: 8rpx;
+  padding: 20rpx 40rpx;
+  text-align: center;
+} 

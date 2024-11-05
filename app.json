@@ -1,0 +1,37 @@
+{
+  "pages": [
+    "pages/login/login",
+    "pages/student/index/index",
+    "pages/student/reservation/reservation",
+    "pages/student/history/history",
+    "pages/teacher/index/index",
+    "pages/teacher/approval/approval",
+    "pages/teacher/statistics/statistics"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "大创空间预约系统",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "custom": true,
+    "list": [
+      {
+        "pagePath": "pages/student/index/index",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/student/reservation/reservation",
+        "text": "预约"
+      },
+      {
+        "pagePath": "pages/student/history/history",
+        "text": "历史"
+      }
+    ]
+  },
+  "usingComponents": {
+    "mp-icon": "weui-miniprogram/icon/icon"
+  }
+} 

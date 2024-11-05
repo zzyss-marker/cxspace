@@ -1,0 +1,45 @@
+<view class="login-container">
+  <view class="login-header">
+    <view class="login-title">大创空间预约系统</view>
+    <view class="login-subtitle">请使用学号和身份证后几位登录</view>
+  </view>
+
+  <view class="login-form">
+    <view class="form-item">
+      <mp-icon icon="idcard" color="#999999" size="{{24}}"></mp-icon>
+      <input 
+        type="text"
+        placeholder="请输入学号"
+        value="{{studentId}}"
+        bindinput="onStudentIdInput"
+      />
+    </view>
+
+    <view class="form-item">
+      <mp-icon icon="lock" color="#999999" size="{{24}}"></mp-icon>
+      <input 
+        type="text"
+        password
+        placeholder="请输入身份证后四位"
+        value="{{idCardLast}}"
+        bindinput="onIdCardInput"
+        maxlength="4"
+      />
+    </view>
+
+    <view class="error-msg" wx:if="{{errorMsg}}">{{errorMsg}}</view>
+
+    <button 
+      class="login-btn {{isLoading ? 'loading' : ''}}"
+      bindtap="handleLogin"
+      disabled="{{isLoading}}"
+    >
+      {{isLoading ? '登录中...' : '登录'}}
+    </button>
+  </view>
+
+  <view class="login-tips">
+    <text>* 学生请使用学号登录</text>
+    <text>* 教师请使用工号登录</text>
+  </view>
+</view> 

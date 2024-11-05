@@ -1,0 +1,79 @@
+<view class="container">
+  <!-- 场地选择 -->
+  <view class="section venues">
+    <view class="section-title">选择场地</view>
+    <scroll-view scroll-x class="venue-scroll">
+      <view class="venue-list">
+        <view class="venue-item {{selectedVenue.id === item.id ? 'selected' : ''}} {{!item.available ? 'disabled' : ''}}"
+              wx:for="{{venues}}" 
+              wx:key="id"
+              bindtap="selectVenue"
+              data-id="{{item.id}}">
+          <view class="venue-icon">
+            <mp-icon icon="{{item.icon}}" color="{{selectedVenue.id === item.id ? '#1AAD19' : '#999999'}}" size="{{40}}"></mp-icon>
+          </view>
+          <view class="venue-info">
+            <view class="venue-name">{{item.name}}</view>
+            <view class="venue-capacity">容量：{{item.capacity}}</view>
+            <view class="venue-equipment">设备：{{item.equipment}}</view>
+            <view class="venue-status {{item.available ? 'available' : 'unavailable'}}">
+              {{item.available ? '可预约' : '维护中'}}
+            </view>
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+
+  <!-- 时间选择 -->
+  <view class="section">
+    <view class="section-title">选择时间</view>
+    <view class="form-item">
+      <picker mode="date" 
+              value="{{selectedDate}}" 
+              start="{{minDate}}" 
+              end="{{maxDate}}"
+              bindchange="onDateChange">
+        <view class="picker {{selectedDate ? '' : 'placeholder'}}">
+          {{selectedDate || '请选择日期'}}
+        </view>
+      </picker>
+    </view>
+    <view class="form-item">
+      <picker mode="selector" 
+              range="{{timeSlots}}" 
+              value="{{selectedTimeSlotIndex}}"
+              bindchange="onTimeSlotChange">
+        <view class="picker {{selectedTimeSlot ? '' : 'placeholder'}}">
+          {{selectedTimeSlot || '请选择时间段'}}
+        </view>
+      </picker>
+    </view>
+  </view>
+
+  <!-- 用途说明 -->
+  <view class="section">
+    <view class="section-title">用途说明</view>
+    <view class="form-item">
+      <textarea class="purpose-input"
+                placeholder="请简要说明使用用途（必填）"
+                value="{{purpose}}"
+                bindinput="onPurposeInput"
+                maxlength="200"
+                auto-height/>
+    </view>
+  </view>
+
+  <!-- 预约须知 -->
+  <view class="notice">
+    <view class="notice-title">预约须知：</view>
+    <view class="notice-item">1. 请至少提前24小时预约</view>
+    <view class="notice-item">2. 每次预约时长为2小时</view>
+    <view class="notice-item">3. 请按时使用并保持场地整洁</view>
+  </view>
+
+  <!-- 提交按钮 -->
+  <view class="submit-btn">
+    <button class="btn-primary" bindtap="submitReservation">提交预约</button>
+  </view>
+</view> 
