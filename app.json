@@ -21,6 +21,29 @@
     "van-button": "@vant/weapp/button/index",
     "van-field": "@vant/weapp/field/index",
     "van-toast": "@vant/weapp/toast/index",
-    "van-loading": "@vant/weapp/loading/index"
+    "van-loading": "@vant/weapp/loading/index",
+    "van-icon": "@vant/weapp/icon/index",
+    "van-tab": "@vant/weapp/tab/index",
+    "van-tabs": "@vant/weapp/tabs/index"
+  },
+  "tabBar": {
+    "custom": false,
+    "color": "#999999",
+    "selectedColor": "#1989fa",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "pagePath": "pages/teacher/approval/approval",
+        "text": "审批管理"
+      },
+      {
+        "pagePath": "pages/teacher/venue/venue",
+        "text": "场地管理"
+      },
+      {
+        "pagePath": "pages/teacher/statistics/statistics",
+        "text": "数据统计"
+      }
+    ]
   }
 } 

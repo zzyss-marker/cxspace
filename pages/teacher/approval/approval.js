@@ -1,67 +1,118 @@
 Page({
   data: {
-    activeTab: 0,
-    pendingList: [
-      {
-        id: 1,
-        studentName: '张三',
-        studentId: '2021001',
-        roomName: '多媒体教室A101',
-        date: '2024-03-25',
-        startTime: '14:00',
-        endTime: '16:00',
-        status: 'pending'
-      }
-    ],
-    historyList: [
-      {
-        id: 2,
-        studentName: '李四',
-        studentId: '2021002',
-        roomName: '实验室B201',
-        date: '2024-03-24',
-        startTime: '09:00',
-        endTime: '11:00',
-        status: 'approved'
-      }
-    ]
+    approvalList: [],
+    loading: false
   },
 
-  onTabChange(event) {
-    this.setData({
-      activeTab: event.detail.index
-    });
+  onLoad() {
+    this.loadApprovalList();
+  },
+
+  onPullDownRefresh() {
+    this.loadApprovalList();
+  },
+
+  loadApprovalList() {
+    this.setData({ loading: true });
+    
+    // 模拟获取审批列表数据
+    setTimeout(() => {
+      const mockData = [
+        {
+          id: 1,
+          studentName: '张三',
+          studentId: '2020003',
+          venueName: '创新实验室A',
+          date: '2024-03-20',
+          timeSlot: '14:00-16:00',
+          status: 'pending',
+          purpose: '项目开发'
+        },
+        {
+          id: 2,
+          studentName: '李四',
+          studentId: '2020004',
+          venueName: '创新实验室B',
+          date: '2024-03-21',
+          timeSlot: '09:00-11:00',
+          status: 'pending',
+          purpose: '课程实验'
+        }
+      ];
+
+      this.setData({
+        approvalList: mockData,
+        loading: false
+      });
+
+      wx.stopPullDownRefresh();
+    }, 1000);
   },
 
   handleApprove(e) {
     const { id } = e.currentTarget.dataset;
-    wx.showModal({
-      title: '确认通过',
-      content: '确定通过这个预约申请吗？',
-      success: (res) => {
-        if (res.confirm) {
-          // TODO: 调用审批通过接口
-          wx.showToast({
-            title: '已通过',
-            icon: 'success'
-          });
-        }
-      }
+    
+    wx.showLoading({
+      title: '处理中...',
     });
+
+    // 模拟审批通过请求
+    setTimeout(() => {
+      const newList = this.data.approvalList.map(item => {
+        if (item.id === id) {
+          return { ...item, status: 'approved' };
+        }
+        return item;
+      });
+
+      this.setData({
+        approvalList: newList
+      });
+
+      wx.hideLoading();
+      wx.showToast({
+        title: '已通过',
+        icon: 'success'
+      });
+    }, 500);
   },
 
   handleReject(e) {
     const { id } = e.currentTarget.dataset;
+    
     wx.showModal({
-      title: '确认拒绝',
-      content: '确定拒绝这个预约申请吗？',
+      title: '驳回原因',
+      editable: true,
+      placeholderText: '请输入驳回原因',
       success: (res) => {
         if (res.confirm) {
-          // TODO: 调用拒绝接口
-          wx.showToast({
-            title: '已拒绝',
-            icon: 'success'
+          wx.showLoading({
+            title: '处理中...',
           });
+
+          // 模拟驳回请求
+          setTimeout(() => {
+            const newList = this.data.approvalList.map(item => {
+              if (item.id === id) {
+                return { 
+                  ...item, 
+                  status: 'rejected',
+                  rejectReason: res.content
+                };
+              }
+              return item;
+            });
+
+            this.setData({
+              approvalList: newList
+            });
+
+            wx.hideLoading();
+            wx.showToast({
+              title: '已驳回',
+              icon: 'success'
+            });
+          }, 500);
         }
       }
     });

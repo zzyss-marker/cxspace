@@ -1,39 +1,53 @@
 <view class="container">
-  <view class="user-info">
-    <view class="welcome">欢迎，{{ userInfo.name }}</view>
-    <view class="department">教师管理系统</view>
+  <view class="header">
+    <view class="welcome">
+      <text class="welcome-text">欢迎，{{userInfo.name}}</text>
+      <text class="role-text">教师端</text>
+    </view>
+    <view class="stats-overview">
+      <view class="stats-item">
+        <text class="stats-num">{{todayApprovals}}</text>
+        <text class="stats-label">今日待审批</text>
+      </view>
+      <view class="stats-item">
+        <text class="stats-num">{{totalVenues}}</text>
+        <text class="stats-label">场地总数</text>
+      </view>
+      <view class="stats-item">
+        <text class="stats-num">{{monthlyReservations}}</text>
+        <text class="stats-label">本月预约</text>
+      </view>
+    </view>
   </view>
 
-  <view class="statistics">
-    <view class="stat-item">
-      <text class="number">{{ stats.pending || 0 }}</text>
-      <text class="label">待审批</text>
+  <view class="function-cards">
+    <view class="function-card" bindtap="navigateTo" data-page="approval">
+      <view class="card-header">
+        <van-icon name="records" size="24px" color="#1989fa"/>
+        <text class="card-title">审批管理</text>
+      </view>
+      <text class="card-desc">查看和处理学生预约申请</text>
+      <view class="card-badge" wx:if="{{pendingCount > 0}}">{{pendingCount}}</view>
     </view>
-    <view class="stat-item">
-      <text class="number">{{ stats.today || 0 }}</text>
-      <text class="label">今日预约</text>
+
+    <view class="function-card" bindtap="navigateTo" data-page="venue">
+      <view class="card-header">
+        <van-icon name="cluster-o" size="24px" color="#1989fa"/>
+        <text class="card-title">场地管理</text>
+      </view>
+      <text class="card-desc">管理场地状态和使用记录</text>
     </view>
-    <view class="stat-item">
-      <text class="number">{{ stats.total || 0 }}</text>
-      <text class="label">总预约</text>
+
+    <view class="function-card" bindtap="navigateTo" data-page="statistics">
+      <view class="card-header">
+        <van-icon name="chart-trending-o" size="24px" color="#1989fa"/>
+        <text class="card-title">数据统计</text>
+      </view>
+      <text class="card-desc">查看场地使用数据分析</text>
     </view>
   </view>
 
-  <view class="quick-actions">
-    <view class="section-title">快捷功能</view>
-    <view class="action-grid">
-      <view class="action-item" bindtap="navigateTo" data-url="/pages/teacher/approval/approval">
-        <van-icon name="passed" size="48rpx" color="#1AAD19"/>
-        <text>审批管理</text>
-      </view>
-      <view class="action-item" bindtap="navigateTo" data-url="/pages/teacher/venue/venue">
-        <van-icon name="shop" size="48rpx" color="#1AAD19"/>
-        <text>场地管理</text>
-      </view>
-      <view class="action-item" bindtap="navigateTo" data-url="/pages/teacher/statistics/statistics">
-        <van-icon name="chart-trending-o" size="48rpx" color="#1AAD19"/>
-        <text>数据统计</text>
-      </view>
-    </view>
+  <view class="logout-button">
+    <van-button type="danger" block bind:tap="handleLogout">退出登录</van-button>
   </view>
 </view> 

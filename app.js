@@ -18,14 +18,6 @@ App({
       } else {
         // 未登录状态，清除所有存储
         wx.clearStorageSync();
-        // 如果不在登录页，则跳转到登录页
-        const pages = getCurrentPages();
-        const currentPage = pages[pages.length - 1];
-        if (currentPage && currentPage.route !== 'pages/login/login') {
-          wx.reLaunch({
-            url: '/pages/login/login'
-          });
-        }
       }
     } catch (error) {
       console.error('检查登录状态失败:', error);
