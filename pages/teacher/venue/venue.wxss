@@ -1,0 +1,65 @@
+/* pages/teacher/venue/venue.wxss */
+.container {
+  padding: 30rpx;
+  background: #f8f8f8;
+  min-height: 100vh;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30rpx;
+}
+
+.title {
+  font-size: 36rpx;
+  font-weight: bold;
+}
+
+.venue-list {
+  margin-bottom: 30rpx;
+}
+
+.venue-info {
+  display: flex;
+  flex-direction: column;
+  gap: 10rpx;
+}
+
+.equipment {
+  margin-bottom: 10rpx;
+}
+
+.status-tag {
+  text-align: right;
+}
+
+.stats-cards {
+  margin-top: 30rpx;
+}
+
+.stat-card {
+  padding: 20rpx;
+  text-align: center;
+}
+
+.stat-value {
+  font-size: 40rpx;
+  font-weight: bold;
+  color: #1AAD19;
+}
+
+.stat-label {
+  font-size: 24rpx;
+  color: #666;
+  margin-top: 10rpx;
+}
+
+.van-cell {
+  padding: 20rpx !important;
+}
+
+.van-tag {
+  margin-bottom: 8rpx;
+}

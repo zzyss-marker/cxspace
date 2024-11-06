@@ -2,10 +2,13 @@
   "pages": [
     "pages/login/login",
     "pages/student/index/index",
-    "pages/student/reservation/reservation",
-    "pages/student/history/history",
     "pages/teacher/index/index",
+    "pages/student/history/history",
+    "pages/student/reservation/reservation",
+    "pages/student/review/review",
+    "pages/student/qa/qa",
     "pages/teacher/approval/approval",
+    "pages/teacher/venue/venue",
     "pages/teacher/statistics/statistics"
   ],
   "window": {
@@ -14,24 +17,10 @@
     "navigationBarTitleText": "大创空间预约系统",
     "navigationBarTextStyle": "black"
   },
-  "tabBar": {
-    "custom": true,
-    "list": [
-      {
-        "pagePath": "pages/student/index/index",
-        "text": "首页"
-      },
-      {
-        "pagePath": "pages/student/reservation/reservation",
-        "text": "预约"
-      },
-      {
-        "pagePath": "pages/student/history/history",
-        "text": "历史"
-      }
-    ]
-  },
   "usingComponents": {
-    "mp-icon": "weui-miniprogram/icon/icon"
+    "van-button": "@vant/weapp/button/index",
+    "van-field": "@vant/weapp/field/index",
+    "van-toast": "@vant/weapp/toast/index",
+    "van-loading": "@vant/weapp/loading/index"
   }
 } 

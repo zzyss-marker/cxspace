@@ -1,0 +1,26 @@
+.container {
+  padding: 30rpx;
+  background: #f8f8f8;
+  min-height: 100vh;
+}
+
+.approval-list {
+  margin-top: 20rpx;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 20rpx;
+}
+
+.van-cell {
+  padding: 20rpx !important;
+}
+
+.van-button--small {
+  min-width: 120rpx !important;
+}
+
+.van-tag {
+  margin-left: 10rpx;
+} 

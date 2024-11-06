@@ -1,0 +1,18 @@
+<view class="container">
+  <view class="history-list">
+    <block wx:if="{{ historyList.length > 0 }}">
+      <view class="history-item" wx:for="{{ historyList }}" wx:key="id">
+        <view class="room-info">
+          <view class="room-name">{{ item.roomName }}</view>
+          <view class="booking-time">{{ item.date }} {{ item.startTime }}-{{ item.endTime }}</view>
+        </view>
+        <view class="booking-status {{ item.status }}">
+          {{ item.status === 'approved' ? '已通过' : '待审核' }}
+        </view>
+      </view>
+    </block>
+    <view class="empty-tip" wx:else>
+      <text>暂无预约记录</text>
+    </view>
+  </view>
+</view> 

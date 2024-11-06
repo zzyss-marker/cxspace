@@ -1,0 +1,61 @@
+.container {
+  padding: 30rpx;
+  background: #f8f8f8;
+  min-height: 100vh;
+}
+
+.overview-cards {
+  margin-bottom: 30rpx;
+}
+
+.stat-card {
+  padding: 20rpx;
+  text-align: center;
+}
+
+.stat-value {
+  font-size: 40rpx;
+  font-weight: bold;
+  color: #1AAD19;
+}
+
+.stat-label {
+  font-size: 24rpx;
+  color: #666;
+  margin-top: 10rpx;
+}
+
+.section {
+  background: #fff;
+  border-radius: 12rpx;
+  padding: 30rpx;
+  margin-bottom: 30rpx;
+}
+
+.section-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  margin-bottom: 20rpx;
+}
+
+.venue-stats, .time-stats {
+  margin-top: 20rpx;
+}
+
+.filter-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #fff;
+  padding: 20rpx;
+  box-shadow: 0 -2rpx 10rpx rgba(0,0,0,0.05);
+}
+
+.van-progress {
+  margin-top: 10rpx;
+}
+
+.van-cell {
+  padding: 20rpx !important;
+} 

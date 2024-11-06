@@ -1,0 +1,55 @@
+<view class="container">
+  <view class="header">
+    <view class="title">场地管理</view>
+    <van-button type="primary" size="small" bind:click="handleAddVenue">添加场地</van-button>
+  </view>
+
+  <view class="venue-list">
+    <van-cell-group wx:if="{{ venues.length > 0 }}">
+      <van-cell 
+        wx:for="{{ venues }}" 
+        wx:key="id"
+        title="{{ item.name }}"
+        label="容量：{{ item.capacity }}人"
+        is-link
+        bind:click="handleEditVenue"
+        data-id="{{ item.id }}"
+      >
+        <view class="venue-info">
+          <view class="equipment">
+            <van-tag wx:for="{{ item.equipment }}" 
+                    wx:key="*this" 
+                    type="primary" 
+                    plain
+                    style="margin-right: 8rpx;">
+              {{ item }}
+            </van-tag>
+          </view>
+          <view class="status-tag" bindtap="handleStatusChange" data-id="{{ item.id }}">
+            <van-tag type="{{ item.status === 'available' ? 'success' : 'warning' }}">
+              {{ item.status === 'available' ? '正常使用' : '维护中' }}
+            </van-tag>
+          </view>
+        </view>
+      </van-cell>
+    </van-cell-group>
+    <van-empty wx:else description="暂无场地信息" />
+  </view>
+
+  <view class="stats-cards">
+    <van-grid column-num="2" gutter="{{ 10 }}">
+      <van-grid-item>
+        <view class="stat-card">
+          <view class="stat-value">{{ venues.length }}</view>
+          <view class="stat-label">总场地数</view>
+        </view>
+      </van-grid-item>
+      <van-grid-item>
+        <view class="stat-card">
+          <view class="stat-value">{{ venues.filter(v => v.status === 'available').length }}</view>
+          <view class="stat-label">可用场地</view>
+        </view>
+      </van-grid-item>
+    </van-grid>
+  </view>
+</view> 

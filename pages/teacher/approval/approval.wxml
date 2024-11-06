@@ -1,0 +1,41 @@
+<view class="container">
+  <van-tabs active="{{ activeTab }}" bind:change="onTabChange">
+    <van-tab title="待审批">
+      <view class="approval-list">
+        <van-cell-group wx:if="{{ pendingList.length > 0 }}">
+          <van-cell 
+            wx:for="{{ pendingList }}" 
+            wx:key="id"
+            title="{{ item.studentName }} - {{ item.roomName }}"
+            label="{{ item.date }} {{ item.startTime }}-{{ item.endTime }}"
+            is-link
+          >
+            <view class="action-buttons">
+              <van-button size="small" type="success" bind:click="handleApprove" data-id="{{ item.id }}">通过</van-button>
+              <van-button size="small" type="danger" bind:click="handleReject" data-id="{{ item.id }}">拒绝</van-button>
+            </view>
+          </van-cell>
+        </van-cell-group>
+        <van-empty wx:else description="暂无待审批预约" />
+      </view>
+    </van-tab>
+    
+    <van-tab title="已处理">
+      <view class="approval-list">
+        <van-cell-group wx:if="{{ historyList.length > 0 }}">
+          <van-cell 
+            wx:for="{{ historyList }}" 
+            wx:key="id"
+            title="{{ item.studentName }} - {{ item.roomName }}"
+            label="{{ item.date }} {{ item.startTime }}-{{ item.endTime }}"
+          >
+            <van-tag type="{{ item.status === 'approved' ? 'success' : 'danger' }}">
+              {{ item.status === 'approved' ? '已通过' : '已拒绝' }}
+            </van-tag>
+          </van-cell>
+        </van-cell-group>
+        <van-empty wx:else description="暂无历史记录" />
+      </view>
+    </van-tab>
+  </van-tabs>
+</view> 

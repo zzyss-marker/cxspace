@@ -1,0 +1,65 @@
+<view class="container">
+  <view class="overview-cards">
+    <van-grid column-num="3" gutter="{{ 10 }}">
+      <van-grid-item>
+        <view class="stat-card">
+          <view class="stat-value">{{ totalBookings }}</view>
+          <view class="stat-label">总预约数</view>
+        </view>
+      </van-grid-item>
+      <van-grid-item>
+        <view class="stat-card">
+          <view class="stat-value">{{ todayBookings }}</view>
+          <view class="stat-label">今日预约</view>
+        </view>
+      </van-grid-item>
+      <van-grid-item>
+        <view class="stat-card">
+          <view class="stat-value">{{ pendingBookings }}</view>
+          <view class="stat-label">待审批</view>
+        </view>
+      </van-grid-item>
+    </van-grid>
+  </view>
+
+  <view class="section">
+    <view class="section-title">场地使用统计</view>
+    <view class="venue-stats">
+      <van-cell-group>
+        <van-cell 
+          wx:for="{{ venueStats }}" 
+          wx:key="name"
+          title="{{ item.name }}"
+          value="预约次数：{{ item.bookings }}"
+          label="使用率：{{ item.rate }}"
+        />
+      </van-cell-group>
+    </view>
+  </view>
+
+  <view class="section">
+    <view class="section-title">时段分布</view>
+    <view class="time-stats">
+      <van-cell-group>
+        <van-cell 
+          wx:for="{{ timeStats }}" 
+          wx:key="time"
+          title="{{ item.time }}"
+          value="{{ item.count }}次"
+        >
+          <van-progress 
+            slot="label"
+            percentage="{{ item.count / 50 * 100 }}"
+            show-pivot="{{ false }}"
+          />
+        </van-cell>
+      </van-cell-group>
+    </view>
+  </view>
+
+  <view class="filter-bar">
+    <van-dropdown-menu>
+      <van-dropdown-item value="{{ timeRange }}" options="{{ timeRangeOptions }}" bind:change="onTimeRangeChange"/>
+    </van-dropdown-menu>
+  </view>
+</view> 
