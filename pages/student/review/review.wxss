@@ -1,0 +1,6 @@
+/* pages/student/review/review.wxss */
+.container {
+  padding: 30rpx;
+  background: #f8f8f8;
+  min-height: 100vh;
+}

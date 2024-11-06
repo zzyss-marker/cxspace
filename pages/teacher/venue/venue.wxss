@@ -1,0 +1,124 @@
+/* pages/teacher/venue/venue.wxss */
+.page-header {
+  display: flex;
+  align-items: center;
+  padding: 20rpx;
+  background: #fff;
+  border-bottom: 1rpx solid #eee;
+}
+
+.header-title {
+  margin-left: 16rpx;
+  font-size: 32rpx;
+  font-weight: bold;
+}
+
+.container {
+  padding-bottom: 40rpx;
+}
+
+.venue-list {
+  padding: 20rpx;
+}
+
+.venue-item {
+  background: #fff;
+  border-radius: 12rpx;
+  padding: 20rpx;
+  margin-bottom: 20rpx;
+  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.1);
+}
+
+.venue-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20rpx;
+  padding-bottom: 16rpx;
+  border-bottom: 1rpx solid #eee;
+}
+
+.venue-name {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333;
+}
+
+.venue-status {
+  padding: 4rpx 12rpx;
+  border-radius: 4rpx;
+  font-size: 24rpx;
+}
+
+.venue-status.available {
+  background: #e8f5e9;
+  color: #4caf50;
+}
+
+.venue-status.maintenance {
+  background: #fff3e0;
+  color: #ff9800;
+}
+
+.venue-info {
+  margin-bottom: 20rpx;
+}
+
+.info-row {
+  margin: 12rpx 0;
+  font-size: 28rpx;
+}
+
+.label {
+  color: #666;
+  display: inline-block;
+  width: 140rpx;
+}
+
+.venue-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 16rpx;
+}
+
+.add-venue-btn {
+  margin-top: 30rpx;
+}
+
+.usage-records {
+  padding: 20rpx;
+}
+
+.record-item {
+  background: #fff;
+  border-radius: 12rpx;
+  padding: 20rpx;
+  margin-bottom: 20rpx;
+  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.1);
+}
+
+.record-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16rpx;
+  padding-bottom: 12rpx;
+  border-bottom: 1rpx solid #eee;
+}
+
+.record-date {
+  font-size: 24rpx;
+  color: #666;
+}
+
+.record-info .info-row {
+  margin: 8rpx 0;
+}
+
+.completed {
+  color: #4caf50;
+}
+
+.in-use {
+  color: #1989fa;
+}

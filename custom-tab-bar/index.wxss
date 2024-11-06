@@ -32,4 +32,12 @@
 .tab-bar-item view {
   font-size: 24rpx;
   margin-top: 4rpx;
+}
+
+.van-tabbar-item {
+  color: #999999 !important;
+}
+
+.van-tabbar-item--active {
+  color: #1AAD19 !important;
 } 

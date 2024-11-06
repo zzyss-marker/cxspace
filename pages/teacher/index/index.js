@@ -1,117 +1,71 @@
 Page({
   data: {
-    userInfo: {},
-    statistics: {
-      pendingCount: 0,
-      todayCount: 0,
-      totalCount: 0
-    },
-    pendingReservations: [],
-    quickActions: [
-      {
-        id: 1,
-        name: '审批管理',
-        icon: 'approval',
-        path: '/pages/teacher/approval/approval'
-      },
-      {
-        id: 2,
-        name: '场地管理',
-        icon: 'venue',
-        path: '/pages/teacher/venue/venue'
-      },
-      {
-        id: 3,
-        name: '统计分析',
-        icon: 'statistics',
-        path: '/pages/teacher/statistics/statistics'
-      }
-    ]
+    userInfo: null,
+    todayApprovals: 0,
+    totalVenues: 0,
+    monthlyReservations: 0,
+    pendingCount: 0
   },
 
   onLoad() {
-    this.setData({
-      userInfo: getApp().globalData.userInfo
-    });
-    this.loadStatistics();
-    this.loadPendingReservations();
+    const userInfo = wx.getStorageSync('userInfo');
+    this.setData({ userInfo });
+    this.loadDashboardData();
   },
 
   onShow() {
-    this.loadStatistics();
-    this.loadPendingReservations();
+    // 每次显示页面时刷新数据
+    this.loadDashboardData();
   },
 
-  // 加载统计数据
-  loadStatistics() {
-    // TODO: 对接后端API
+  loadDashboardData() {
+    // 获取待审批列表
+    const approvalList = wx.getStorageSync('approvalList') || [];
+    // 计算待审批数量
+    const pendingCount = approvalList.filter(item => item.status === 'pending').length;
+    
     this.setData({
-      statistics: {
-        pendingCount: 5,
-        todayCount: 8,
-        totalCount: 120
+      todayApprovals: pendingCount,
+      totalVenues: 8, // 这里可以从后端获取实际场地数量
+      monthlyReservations: approvalList.length,
+      pendingCount: pendingCount
+    });
+  },
+
+  navigateTo(e) {
+    const page = e.currentTarget.dataset.page;
+    const routes = {
+      approval: '/pages/teacher/approval/approval',
+      venue: '/pages/teacher/venue/venue',
+      statistics: '/pages/teacher/statistics/statistics'
+    };
+
+    wx.switchTab({
+      url: routes[page],
+      fail: (error) => {
+        console.error('页面跳转失败:', error);
+        wx.showToast({
+          title: '页面跳转失败',
+          icon: 'none'
+        });
       }
     });
   },
 
-  // 加载待审批预约
-  loadPendingReservations() {
-    // TODO: 对接后端API
-    this.setData({
-      pendingReservations: [
-        {
-          id: 1,
-          studentName: '张三',
-          studentId: '2020001',
-          venueName: '创新实验室A',
-          date: '2024-03-20',
-          timeSlot: '14:00-16:00',
-          purpose: '项目开发',
-          submitTime: '2024-03-19 10:30'
-        },
-        {
-          id: 2,
-          studentName: '李四',
-          studentId: '2020002',
-          venueName: '会议室',
-          date: '2024-03-21',
-          timeSlot: '09:00-11:00',
-          purpose: '团队会议',
-          submitTime: '2024-03-19 11:20'
+  handleLogout() {
+    wx.showModal({
+      title: '提示',
+      content: '确定要退出登录吗？',
+      success: (res) => {
+        if (res.confirm) {
+          // 清除登录信息
+          wx.clearStorageSync();
+          // 跳转到登录页
+          wx.reLaunch({
+            url: '/pages/login/login'
+          });
         }
-      ]
-    });
-  },
-
-  // 快捷操作跳转
-  handleQuickAction(e) {
-    const { path } = e.currentTarget.dataset;
-    wx.navigateTo({ url: path });
-  },
-
-  // 处理审批
-  handleApproval(e) {
-    const { id, action } = e.currentTarget.dataset;
-    wx.showLoading({ title: '处理中' });
-
-    // TODO: 对接后端API
-    setTimeout(() => {
-      wx.hideLoading();
-      wx.showToast({
-        title: action === 'approve' ? '已通过' : '已拒绝',
-        icon: 'success'
-      });
-      // 刷新数据
-      this.loadStatistics();
-      this.loadPendingReservations();
-    }, 1000);
-  },
-
-  // 查看预约详情
-  viewReservationDetail(e) {
-    const { id } = e.currentTarget.dataset;
-    wx.navigateTo({
-      url: `/pages/teacher/approval/detail?id=${id}`
+      }
     });
   }
 }); 

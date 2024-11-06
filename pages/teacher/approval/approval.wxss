@@ -1,0 +1,91 @@
+.container {
+  padding: 20rpx;
+}
+
+.empty-tip {
+  text-align: center;
+  color: #999;
+  margin-top: 200rpx;
+}
+
+.approval-list {
+  padding-bottom: 40rpx;
+}
+
+.approval-item {
+  background: #fff;
+  border-radius: 8rpx;
+  padding: 20rpx;
+  margin-bottom: 20rpx;
+  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.1);
+}
+
+.approval-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20rpx;
+  padding-bottom: 10rpx;
+  border-bottom: 1rpx solid #eee;
+}
+
+.student-name {
+  font-weight: bold;
+}
+
+.student-id {
+  color: #666;
+}
+
+.info-row {
+  margin: 10rpx 0;
+}
+
+.label {
+  color: #666;
+  display: inline-block;
+  width: 100rpx;
+}
+
+.approval-footer {
+  margin-top: 20rpx;
+  display: flex;
+  justify-content: flex-end;
+  gap: 20rpx;
+}
+
+.status-tag {
+  margin-top: 20rpx;
+  padding: 10rpx;
+  border-radius: 4rpx;
+  text-align: center;
+}
+
+.status-tag.approved {
+  background: #e8f5e9;
+  color: #4caf50;
+}
+
+.status-tag.rejected {
+  background: #ffebee;
+  color: #f44336;
+}
+
+.reject-reason {
+  display: block;
+  font-size: 24rpx;
+  margin-top: 10rpx;
+}
+
+.page-header {
+  display: flex;
+  align-items: center;
+  padding: 20rpx;
+  background: #fff;
+  border-bottom: 1rpx solid #eee;
+}
+
+.header-title {
+  margin-left: 16rpx;
+  font-size: 32rpx;
+  font-weight: bold;
+} 

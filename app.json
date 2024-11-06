@@ -2,10 +2,13 @@
   "pages": [
     "pages/login/login",
     "pages/student/index/index",
-    "pages/student/reservation/reservation",
-    "pages/student/history/history",
     "pages/teacher/index/index",
+    "pages/student/history/history",
+    "pages/student/reservation/reservation",
+    "pages/student/review/review",
+    "pages/student/qa/qa",
     "pages/teacher/approval/approval",
+    "pages/teacher/venue/venue",
     "pages/teacher/statistics/statistics"
   ],
   "window": {
@@ -14,24 +17,33 @@
     "navigationBarTitleText": "大创空间预约系统",
     "navigationBarTextStyle": "black"
   },
+  "usingComponents": {
+    "van-button": "@vant/weapp/button/index",
+    "van-field": "@vant/weapp/field/index",
+    "van-toast": "@vant/weapp/toast/index",
+    "van-loading": "@vant/weapp/loading/index",
+    "van-icon": "@vant/weapp/icon/index",
+    "van-tab": "@vant/weapp/tab/index",
+    "van-tabs": "@vant/weapp/tabs/index"
+  },
   "tabBar": {
-    "custom": true,
+    "custom": false,
+    "color": "#999999",
+    "selectedColor": "#1989fa",
+    "backgroundColor": "#ffffff",
     "list": [
       {
-        "pagePath": "pages/student/index/index",
-        "text": "首页"
+        "pagePath": "pages/teacher/approval/approval",
+        "text": "审批管理"
       },
       {
-        "pagePath": "pages/student/reservation/reservation",
-        "text": "预约"
+        "pagePath": "pages/teacher/venue/venue",
+        "text": "场地管理"
       },
       {
-        "pagePath": "pages/student/history/history",
-        "text": "历史"
+        "pagePath": "pages/teacher/statistics/statistics",
+        "text": "数据统计"
       }
     ]
-  },
-  "usingComponents": {
-    "mp-icon": "weui-miniprogram/icon/icon"
   }
 } 
