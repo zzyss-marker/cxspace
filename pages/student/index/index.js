@@ -1,79 +1,47 @@
 Page({
   data: {
     userInfo: {},
-    statistics: {
-      pendingCount: 0,
-      todayCount: 0,
-      totalCount: 0
+    stats: {
+      pending: 0,
+      approved: 0
     },
-    recentReservations: []
+    recentBookings: [
+      {
+        id: 1,
+        venueName: '多媒体教室A101',
+        date: '2024-03-25',
+        startTime: '14:00',
+        endTime: '16:00',
+        status: 'pending'
+      }
+    ]
   },
 
   onLoad() {
-    this.setData({
-      userInfo: getApp().globalData.userInfo
-    });
-    this.loadStatistics();
-    this.loadRecentReservations();
+    const userInfo = wx.getStorageSync('userInfo');
+    this.setData({ userInfo });
+    this.loadStats();
   },
 
-  onShow() {
-    if (typeof this.getTabBar === 'function' && this.getTabBar()) {
-      this.getTabBar().setData({
-        selected: 0
-      });
-    }
-    this.loadStatistics();
-    this.loadRecentReservations();
-  },
-
-  // 加载统计数据
-  loadStatistics() {
-    // TODO: 对接后端API
+  loadStats() {
+    // TODO: 从后端获取统计数据
     this.setData({
-      statistics: {
-        pendingCount: 2,
-        todayCount: 1,
-        totalCount: 15
+      stats: {
+        pending: 1,
+        approved: 5
       }
     });
   },
 
-  // 加载最近预约记录
-  loadRecentReservations() {
-    // TODO: 对接后端API
-    this.setData({
-      recentReservations: [
-        {
-          id: 1,
-          venueName: '创新实验室A',
-          date: '2024-03-20',
-          timeSlot: '14:00-16:00',
-          status: 'pending'
-        },
-        {
-          id: 2,
-          venueName: '会议室',
-          date: '2024-03-21',
-          timeSlot: '09:00-11:00',
-          status: 'approved'
-        }
-      ]
-    });
-  },
-
-  // 快速预约
-  handleQuickReservation() {
-    wx.switchTab({
+  navigateToReservation() {
+    wx.navigateTo({
       url: '/pages/student/reservation/reservation'
     });
   },
 
-  // 查看预约详情
-  viewReservationDetail(e) {
-    const { id } = e.currentTarget.dataset;
-    wx.navigateTo({
-      url: `/pages/student/reservation/detail?id=${id}`
+  navigateToHistory() {
+    wx.switchTab({
+      url: '/pages/student/history/history'
     });
   }
 }); 

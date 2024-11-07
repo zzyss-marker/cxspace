@@ -1,0 +1,64 @@
+<view class="page-header">
+  <van-icon name="records" size="24px" color="#1989fa"/>
+  <text class="header-title">审批管理</text>
+</view>
+
+<view class="container">
+  <van-loading wx:if="{{loading}}" />
+  
+  <block wx:else>
+    <view wx:if="{{approvalList.length === 0}}" class="empty-tip">
+      暂无待审批的申请
+    </view>
+    
+    <view wx:else class="approval-list">
+      <view wx:for="{{approvalList}}" wx:key="id" class="approval-item">
+        <view class="approval-header">
+          <text class="student-name">{{item.studentName}}</text>
+          <text class="student-id">{{item.studentId}}</text>
+        </view>
+        
+        <view class="approval-content">
+          <view class="info-row">
+            <text class="label">场地：</text>
+            <text>{{item.venueName}}</text>
+          </view>
+          <view class="info-row">
+            <text class="label">日期：</text>
+            <text>{{item.date}}</text>
+          </view>
+          <view class="info-row">
+            <text class="label">时段：</text>
+            <text>{{item.timeSlot}}</text>
+          </view>
+          <view class="info-row">
+            <text class="label">用途：</text>
+            <text>{{item.purpose}}</text>
+          </view>
+        </view>
+
+        <view class="approval-footer" wx:if="{{item.status === 'pending'}}">
+          <van-button 
+            type="primary" 
+            size="small" 
+            data-id="{{item.id}}"
+            bind:tap="handleApprove"
+          >通过</van-button>
+          <van-button 
+            type="danger" 
+            size="small" 
+            data-id="{{item.id}}"
+            bind:tap="handleReject"
+          >驳回</van-button>
+        </view>
+        
+        <view class="status-tag {{item.status}}" wx:else>
+          {{item.status === 'approved' ? '已通过' : '已驳回'}}
+          <text wx:if="{{item.rejectReason}}" class="reject-reason">
+            原因：{{item.rejectReason}}
+          </text>
+        </view>
+      </view>
+    </view>
+  </block>
+</view> 

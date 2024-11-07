@@ -1,55 +1,45 @@
 <view class="container">
-  <!-- 用户信息 -->
   <view class="user-info">
-    <view class="welcome">你好，{{userInfo.name}}</view>
-    <view class="department">{{userInfo.department}}</view>
+    <view class="welcome">欢迎，{{ userInfo.name }}</view>
+    <view class="department">学生预约系统</view>
   </view>
 
-  <!-- 统计信息 -->
   <view class="statistics">
     <view class="stat-item">
-      <text class="number warning">{{statistics.pendingCount}}</text>
-      <text class="label">待审批</text>
+      <text class="number {{ stats.pending > 0 ? 'warning' : '' }}">{{ stats.pending || 0 }}</text>
+      <text class="label">待审核</text>
     </view>
     <view class="stat-item">
-      <text class="number">{{statistics.todayCount}}</text>
-      <text class="label">今日预约</text>
-    </view>
-    <view class="stat-item">
-      <text class="number">{{statistics.totalCount}}</text>
-      <text class="label">总预约</text>
+      <text class="number">{{ stats.approved || 0 }}</text>
+      <text class="label">已通过</text>
     </view>
   </view>
 
-  <!-- 快速预约 -->
-  <view class="quick-reservation" bindtap="handleQuickReservation">
-    <mp-icon icon="add" color="#1AAD19" size="{{32}}"></mp-icon>
+  <view class="quick-reservation" bindtap="navigateToReservation">
+    <van-icon name="calendar-o" size="48rpx" color="#1AAD19"/>
     <text>快速预约</text>
   </view>
 
-  <!-- 最近预约记录 -->
   <view class="recent-reservations">
     <view class="section-header">
       <text class="section-title">最近预约</text>
-      <text class="view-all" bindtap="viewAllReservations">查看全部</text>
+      <text class="view-all" bindtap="navigateToHistory">查看全部</text>
     </view>
-    <view class="reservation-list">
-      <view class="reservation-item" 
-            wx:for="{{recentReservations}}" 
-            wx:key="id"
-            bindtap="viewReservationDetail"
-            data-id="{{item.id}}">
+    
+    <view wx:if="{{ recentBookings.length > 0 }}">
+      <view class="reservation-item" wx:for="{{ recentBookings }}" wx:key="id">
         <view class="reservation-info">
-          <view class="venue-name">{{item.venueName}}</view>
+          <view class="venue-name">{{ item.venueName }}</view>
           <view class="time-info">
-            <text>{{item.date}}</text>
-            <text>{{item.timeSlot}}</text>
+            <text>{{ item.date }}</text>
+            <text>{{ item.startTime }}-{{ item.endTime }}</text>
           </view>
         </view>
-        <view class="reservation-status {{item.status}}">
-          {{item.status === 'pending' ? '待审批' : '已通过'}}
+        <view class="reservation-status {{ item.status }}">
+          {{ item.status === 'approved' ? '已通过' : '待审核' }}
         </view>
       </view>
     </view>
+    <van-empty wx:else description="暂无预约记录" />
   </view>
 </view> 

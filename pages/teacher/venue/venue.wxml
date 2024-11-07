@@ -1,0 +1,99 @@
+<view class="page-header">
+  <van-icon name="cluster-o" size="24px" color="#1989fa"/>
+  <text class="header-title">场地管理</text>
+</view>
+
+<view class="container">
+  <van-tabs active="{{ active }}" bind:change="onTabChange">
+    <van-tab title="场地列表">
+      <view class="venue-list">
+        <view wx:for="{{venueList}}" wx:key="id" class="venue-item">
+          <view class="venue-header">
+            <view class="venue-name">{{item.name}}</view>
+            <view class="venue-status {{item.status}}">
+              {{item.status === 'available' ? '可用' : '维护中'}}
+            </view>
+          </view>
+
+          <view class="venue-info">
+            <view class="info-row">
+              <text class="label">容量：</text>
+              <text>{{item.capacity}}人</text>
+            </view>
+            <view class="info-row">
+              <text class="label">设备：</text>
+              <text>{{item.equipment}}</text>
+            </view>
+            <view class="info-row">
+              <text class="label">开放时间：</text>
+              <text>{{item.openTime}}</text>
+            </view>
+            <view class="info-row">
+              <text class="label">使用说明：</text>
+              <text>{{item.instructions}}</text>
+            </view>
+          </view>
+
+          <view class="venue-actions">
+            <van-button 
+              type="{{item.status === 'available' ? 'warning' : 'primary'}}" 
+              size="small"
+              data-id="{{item.id}}"
+              bind:tap="toggleStatus"
+            >
+              {{item.status === 'available' ? '设为维护' : '设为可用'}}
+            </van-button>
+            <van-button 
+              type="info" 
+              size="small"
+              data-id="{{item.id}}"
+              bind:tap="showUsageRecords"
+            >使用记录</van-button>
+            <van-button 
+              type="primary" 
+              size="small"
+              data-id="{{item.id}}"
+              bind:tap="editVenue"
+            >编辑</van-button>
+          </view>
+        </view>
+
+        <van-button 
+          type="primary" 
+          block 
+          class="add-venue-btn"
+          bind:tap="addVenue"
+        >添加新场地</van-button>
+      </view>
+    </van-tab>
+
+    <van-tab title="使用记录">
+      <view class="usage-records">
+        <view wx:for="{{usageRecords}}" wx:key="id" class="record-item">
+          <view class="record-header">
+            <text class="venue-name">{{item.venueName}}</text>
+            <text class="record-date">{{item.date}}</text>
+          </view>
+          <view class="record-info">
+            <view class="info-row">
+              <text class="label">使用者：</text>
+              <text>{{item.userName}} ({{item.userId}})</text>
+            </view>
+            <view class="info-row">
+              <text class="label">时段：</text>
+              <text>{{item.timeSlot}}</text>
+            </view>
+            <view class="info-row">
+              <text class="label">用途：</text>
+              <text>{{item.purpose}}</text>
+            </view>
+            <view class="info-row">
+              <text class="label">状态：</text>
+              <text class="{{item.status}}">{{item.status === 'completed' ? '已完成' : '使用中'}}</text>
+            </view>
+          </view>
+        </view>
+      </view>
+    </van-tab>
+  </van-tabs>
+</view> 

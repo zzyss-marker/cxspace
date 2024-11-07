@@ -1,0 +1,55 @@
+<view class="page-header">
+  <van-icon name="chart-trending-o" size="24px" color="#1989fa"/>
+  <text class="header-title">数据统计</text>
+</view>
+
+<view class="container">
+  <van-tabs active="{{ active }}" bind:change="onTabChange">
+    <van-tab title="使用频率">
+      <view class="stats-card">
+        <view class="card-title">场地使用频率统计</view>
+        <view class="stats-list">
+          <view wx:for="{{venueStats}}" wx:key="name" class="stats-item">
+            <view class="venue-info">
+              <text class="venue-name">{{item.name}}</text>
+              <text class="usage-count">{{item.count}}次</text>
+            </view>
+            <view class="progress-bar">
+              <view class="progress" style="width: {{item.percentage}}%"></view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </van-tab>
+
+    <van-tab title="时段分布">
+      <view class="stats-card">
+        <view class="card-title">预约时段分布</view>
+        <view class="time-slots">
+          <view wx:for="{{timeSlotStats}}" wx:key="slot" class="time-slot-item">
+            <view class="time-label">{{item.slot}}</view>
+            <view class="slot-count">{{item.count}}次</view>
+            <view class="slot-percentage">{{item.percentage}}%</view>
+          </view>
+        </view>
+      </view>
+    </van-tab>
+
+    <van-tab title="使用目的">
+      <view class="stats-card">
+        <view class="card-title">场地使用目的分析</view>
+        <view class="purpose-list">
+          <view wx:for="{{purposeStats}}" wx:key="purpose" class="purpose-item">
+            <view class="purpose-info">
+              <text class="purpose-name">{{item.purpose}}</text>
+              <text class="purpose-count">{{item.count}}次</text>
+            </view>
+            <view class="progress-bar">
+              <view class="progress" style="width: {{item.percentage}}%"></view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </van-tab>
+  </van-tabs>
+</view> 
