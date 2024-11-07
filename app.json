@@ -45,5 +45,6 @@
         "text": "数据统计"
       }
     ]
-  }
+  },
+  "lazyCodeLoading": "requiredComponents"
 } 
